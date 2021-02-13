@@ -6,7 +6,7 @@ const ItemSchema = new mongoose.Schema({
     name: { type: String, default: '???' },
     type: { type: String, enum: itemTypes, default: '???' },
     price: { type: Number, default: 0 },
-    sell: { type: Boolean, default: false }
+    selling: { type: Boolean, default: false }
 });
 
 const ItemModel = mongoose.model('Item', ItemSchema);

@@ -1,10 +1,11 @@
-const mongoose = require('mongoose')
+const { connect } = require('mongoose')
+const config = require('./config.json')
 
-mongoose
-    .connect('mongodb://127.0.0.1:27017/perch', {useNewUrlParser: true})
-    .then(console.log('Now connected to mongodb database'))
-    .catch(err => console.error('Could not connect to database ', err.message))
+// Local db mongodb://127.0.0.1:27017/perch
 
-const db = mongoose.connection
+const connectDb = () =>
+    connect(`mongodb+srv://${config.username}:${config.password}@cluster0.uxufv.mongodb.net/${config.dbName}?retryWrites=true&w=majority`, {useNewUrlParser: true})
+        .then(console.log('Now connected to mongodb database'))
+        .catch(err => console.error('Could not connect to database ', err.message))
 
-module.exports = db
+module.exports = connectDb;
